@@ -1,0 +1,304 @@
+.App {
+  text-align: center;
+}
+
+body {
+  background-color: rgb(127, 246, 255);
+}
+
+h1 {
+  font-size: 55px;
+}
+
+*{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 0px;
+}
+
+#noTasksLeft {
+  color: darkgreen;
+  font-size: 40px;
+}
+
+.clickNav {
+  cursor: pointer;
+  background-color: rgb(22, 143, 219);
+  font-size: 25px;
+  color: white;
+  width: 150px;
+  margin: auto;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+.clickbtn {
+  cursor: pointer;
+  background-color: rgb(22, 143, 219);
+  font-size: 35px;
+  color: white;
+  width: fit-content;
+  margin: auto;
+  border-radius: 35px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.flexboxContainerTasks {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 60%;
+  margin:auto;
+  min-height: 100px;
+  height: 50%;
+}
+
+.flexboxContainerButtons {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  /* justify-content: space-around; */
+  /* align-content: space-around; */
+  width: 20%;
+  margin:auto;
+  min-height: 100px;
+  height: 50%;
+}
+
+.flexboxContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 50%;
+  margin:auto;
+  min-height: 100px;
+  height: 50%;
+}
+
+.flexboxContainerLine {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  width: 80%;
+  margin:auto;
+  font-size: 35px;
+}
+
+.inputLabel {
+  font-size: 25px;
+  text-align: center;
+  width: fit-content;
+  margin:auto;
+}
+
+.taskPreview {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 30px;
+  background-color: rgb(190, 246, 107);
+  color: rgb(0, 0, 0);
+  border: 2px solid white;
+  cursor: pointer;
+  padding: 2px;
+  width: 100%;
+  /* width: fit-content; */
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.overlay {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(47, 250, 254, 0.463);
+}
+
+.taskInfo {
+  position: fixed;
+  /* display: flex; */
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  transform: translate(50%, 50%);
+  font-size: 30px;
+  border: 5px solid black;
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+
+.taskDataLabel {
+  font-size: 20px;
+  min-width: 40%;
+  max-width: 80%;
+  height: fit-content;
+  background-color: rgb(5, 244, 236);
+  margin: auto;
+  color: rgb(0, 0, 0);
+}
+
+.taskNameLabel {
+  font-size: 30px;
+  font-weight: 400;
+  min-width: 40%;
+  max-width: 80%;
+  height: fit-content;
+  background-color: rgb(5, 244, 236);
+  margin: auto;
+  color: rgb(0, 0, 0);
+}
+
+.taskCloseLabel {
+  position: relative;
+  text-align: right;
+  font-size: 15px;
+  font-weight: 600;
+  right: 20px;
+  top: 20px;
+  /* min-width: 40%;
+  max-width: 80%; */
+  height: fit-content;
+  margin: auto;
+  color: rgb(255, 0, 0);
+}
+
+.descriptionInputLabel {
+  resize: none;
+  font-size: 25px;
+  text-align: center;
+  height: 250px;
+  margin:auto;
+}
+
+.optionDiv {
+  cursor: pointer;
+  background-color: rgb(22, 143, 219);
+  font-size: 25px;
+  color: white;
+  width: 80%;
+  margin: auto;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+.popUpOverlay {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(47, 250, 254, 0.4);
+}
+
+.popUpInfo {
+  flex-direction: column;
+  font-size: 20px;
+  height: fit-content;
+  margin-top: 20%; 
+}
+
+.popUpCloseLabel {
+  position: absolute;
+  cursor: pointer;
+  text-align: right;
+  font-size: 25px;
+  font-weight: 600;
+  width: fit-content;
+  right: 20px;
+  top: 20px;
+  height: fit-content;
+  margin: auto;
+  color: rgb(255, 0, 0);
+}
+
+.popUpNameLabel {
+  font-size: 30px;
+  font-weight: 800;
+  text-decoration: underline;
+  min-width: 40%;
+  max-width: 80%;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(5, 244, 236);
+  margin: auto;
+  color: rgb(0, 0, 0);
+}
+
+.popUpContentLabel {
+  position: relative;
+  font-size: 20px;
+  min-width: 40%;
+  max-width: 80%;
+  height: fit-content;
+  background-color: aliceblue;
+  margin: auto;
+  color: rgb(0, 0, 0);
+  border: 4px solid black;
+}
+
+
+@media (max-width: 425px) {
+
+  .inputLabel {
+    font-size: 15px;
+    text-align: center;
+    width: fit-content;
+    margin:auto;
+  }
+
+  .taskPreview {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 12px;
+    background-color: rgb(190, 246, 107);
+    color: rgb(0, 0, 0);
+    border: 1px solid white;
+    cursor: pointer;
+    padding: 2px;
+    width: 100%;
+    /* width: fit-content; */
+    margin: auto;
+    margin-bottom: 8px;
+  }
+
+  .optionDiv {
+    cursor: pointer;
+    background-color: rgb(22, 143, 219);
+    font-size: 12px;
+    color: white;
+    width: 80%;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 12px;
+  }
+
+  .descriptionInputLabel {
+    resize: none;
+    font-size: 15px;
+    text-align: center;
+    height: 250px;
+    margin:auto;
+  }
+  
+  .clickbtn {
+    cursor: pointer;
+    background-color: rgb(22, 143, 219);
+    font-size: 20px;
+    color: white;
+    width: fit-content;
+    margin: auto;
+    border-radius: 20px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }  
+
+}
