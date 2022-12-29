@@ -72,7 +72,6 @@ function App() {
   return (
     <div className="App">
       <h1>Tasks Management</h1>
-      <br />
 
     <Router>
       <NavBar />

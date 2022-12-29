@@ -47,7 +47,8 @@ h1 {
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 60%;
+  margin-left: 5%;
+  width: 80%;
   margin:auto;
   min-height: 100px;
   height: 50%;
@@ -59,10 +60,10 @@ h1 {
   text-align: center;
   /* justify-content: space-around; */
   /* align-content: space-around; */
-  width: 20%;
+  max-height: 80%;
+  width: 15%;
   margin:auto;
   min-height: 100px;
-  height: 50%;
 }
 
 .flexboxContainer {
@@ -82,9 +83,9 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-between;
   text-align: center;
-  width: 80%;
+  width: 90%;
   margin:auto;
-  font-size: 35px;
+  font-size: 15px;
 }
 
 .inputLabel {
@@ -98,13 +99,13 @@ h1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   font-size: 30px;
   background-color: rgb(190, 246, 107);
   color: rgb(0, 0, 0);
   border: 2px solid white;
   cursor: pointer;
-  padding: 2px;
+  padding: 3px;
   width: 100%;
   /* width: fit-content; */
   margin: auto;
@@ -185,6 +186,8 @@ h1 {
   color: white;
   width: 80%;
   margin: auto;
+  padding: 5px;
+  height: fit-content;
   border: 2px solid black;
   border-radius: 25px;
 }
@@ -245,10 +248,27 @@ h1 {
 }
 
 
-@media (max-width: 425px) {
+@media (max-width: 600px) {
 
   h1 {
     font-size: 35px;
+  }
+
+  .flexboxContainerLine {
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    width: 90%;
+    margin:auto;
+    font-size: 15px;
+  }
+
+  .flexboxContainerButtons {
+    width: 100%;
+    margin:auto;
+    margin-bottom: 20px;
+    /* min-height: 100px;
+    height: 20%; */
   }
 
   .inputLabel {

@@ -15,7 +15,6 @@ export default function TaskPreview(props) {
   return (
     <div>
       <div onClick={()=>{setShowInfo(true)}} className='taskPreview'>
-        <div> </div>
           <div>
             Task Name:
             <br/>
