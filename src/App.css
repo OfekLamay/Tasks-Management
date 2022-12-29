@@ -20,6 +20,22 @@ h1 {
   font-size: 40px;
 }
 
+.taskName {
+  width: 35%;
+  min-width: 100px;
+  max-width: 200px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.taskUserRelated {
+  width: 55%;
+  min-width: 120px;
+  max-width: 300px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
 .clickNav {
   cursor: pointer;
   background-color: rgb(22, 143, 219);
@@ -48,7 +64,7 @@ h1 {
   flex-direction: column;
   text-align: center;
   margin-left: 5%;
-  width: 80%;
+  width: 73%;
   margin:auto;
   min-height: 100px;
   height: 50%;
@@ -58,15 +74,24 @@ h1 {
   display: flex;
   flex-direction: column;
   text-align: center;
-  /* justify-content: space-around; */
-  /* align-content: space-around; */
   max-height: 80%;
-  width: 15%;
+  width: 17%;
   margin:auto;
   min-height: 100px;
 }
 
 .flexboxContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 50%;
+  max-width: 300px;
+  margin:auto;
+  min-height: 100px;
+  height: 50%;
+}
+
+.flexboxContainerNewTask {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -92,6 +117,7 @@ h1 {
   font-size: 25px;
   text-align: center;
   width: 100%;
+  max-width: 400px;
   margin:auto;
 }
 
@@ -99,7 +125,7 @@ h1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-size: 30px;
   background-color: rgb(190, 246, 107);
   color: rgb(0, 0, 0);
@@ -107,7 +133,6 @@ h1 {
   cursor: pointer;
   padding: 3px;
   width: 100%;
-  /* width: fit-content; */
   margin: auto;
   margin-bottom: 10px;
 }
@@ -123,7 +148,6 @@ h1 {
 
 .taskInfo {
   position: fixed;
-  /* display: flex; */
   flex-direction: column;
   text-align: center;
   margin: auto;
@@ -164,8 +188,6 @@ h1 {
   font-weight: 600;
   right: 20px;
   top: 20px;
-  /* min-width: 40%;
-  max-width: 80%; */
   height: fit-content;
   margin: auto;
   color: rgb(255, 0, 0);
@@ -175,6 +197,7 @@ h1 {
   resize: none;
   font-size: 25px;
   text-align: center;
+  width: 90%;
   height: 250px;
   margin:auto;
 }
@@ -263,46 +286,45 @@ h1 {
     font-size: 15px;
   }
 
+  .flexboxContainerTasks {
+    width: 100%;
+    margin: auto;
+    min-height: 100px;
+  }
+
   .flexboxContainerButtons {
     width: 100%;
     margin:auto;
     margin-bottom: 20px;
-    /* min-height: 100px;
-    height: 20%; */
+  }
+
+  .flexboxContainerNewTask {
+    width: 80%;
+    max-width: 300px;
+    margin:auto;
+    min-height: 100px;
+    height: 50%;
   }
 
   .inputLabel {
     font-size: 15px;
     text-align: center;
-    width: fit-content;
+    width: 100%;
+    max-width: 300px;
     margin:auto;
   }
 
   .taskPreview {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
     font-size: 12px;
-    background-color: rgb(190, 246, 107);
-    color: rgb(0, 0, 0);
     border: 1px solid white;
-    cursor: pointer;
     padding: 2px;
-    width: 100%;
-    /* width: fit-content; */
     margin: auto;
     margin-bottom: 8px;
   }
 
   .optionDiv {
-    cursor: pointer;
-    background-color: rgb(22, 143, 219);
     font-size: 12px;
-    color: white;
-    width: 80%;
     margin: auto;
-    border: 2px solid black;
     border-radius: 12px;
   }
 
@@ -310,8 +332,9 @@ h1 {
     resize: none;
     font-size: 15px;
     text-align: center;
+    width: 90%;
     height: 250px;
-    margin:auto;
+    margin: auto;
   }
   
   .clickbtn {
@@ -325,5 +348,13 @@ h1 {
     padding-right: 5px;
     padding-left: 5px;
   }  
+
+  .taskDataLabel {
+    font-size: 15px;
+  }
+  
+  .taskNameLabel {
+    font-size: 25px;
+  }
 
 }

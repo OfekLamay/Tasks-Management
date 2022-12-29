@@ -15,14 +15,14 @@ export default function TaskPreview(props) {
   return (
     <div>
       <div onClick={()=>{setShowInfo(true)}} className='taskPreview'>
-          <div>
-            Task Name:
+          <div className='taskName'>
+            <u>Task Name:</u>
             <br/>
             {props.taskData.name}
           </div>
 
-          <div>
-            User Related To:
+          <div className='taskUserRelated'>
+            <u>User Related To:</u>
             <br/>
             {props.taskData.userRelated}
           </div>

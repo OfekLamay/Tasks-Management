@@ -41,14 +41,13 @@ export default function NewTask() {
     <div>
         <h2>Add New Task</h2>
         <br />
-        <div className='flexboxContainer'>
+        <div className='flexboxContainerNewTask'>
             <br/>
             <button onClick={goBack} className='clickbtn'>Back</button>
             <br/> <br/>
             <input id='name' type="text" className='inputLabel' placeholder='Task name' />
             <br/> <br/>
             <textarea id='description' type="text" className='descriptionInputLabel' placeholder='Task description'/>
-            {/* <input  /> */}
             <br/> <br/>
             <input id='userRelated' type="text" className='inputLabel' placeholder='User related to' />
             <br/> <br/>
