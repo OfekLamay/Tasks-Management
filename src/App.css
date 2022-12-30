@@ -10,6 +10,10 @@ h1 {
   font-size: 55px;
 }
 
+h2 {
+  margin-bottom: 20px;
+}
+
 *{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding: 0px;
@@ -43,6 +47,7 @@ h1 {
   color: white;
   width: 150px;
   margin: auto;
+  margin-bottom: 20px;
   border: 2px solid black;
   border-radius: 25px;
 }
@@ -213,6 +218,8 @@ h1 {
   height: fit-content;
   border: 2px solid black;
   border-radius: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .popUpOverlay {
@@ -323,9 +330,11 @@ h1 {
   }
 
   .optionDiv {
-    font-size: 12px;
+    font-size: 17px;
     margin: auto;
     border-radius: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .descriptionInputLabel {
@@ -355,6 +364,16 @@ h1 {
   
   .taskNameLabel {
     font-size: 25px;
+  }
+
+  .taskInfo {
+    width: 70%;
+    height: 50%;
+    transform: translate(20%, 50%);
+    font-size: 30px;
+    border: 5px solid black;
+    background-color: aliceblue;
+    border-radius: 5px;
   }
 
 }

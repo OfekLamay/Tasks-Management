@@ -8,7 +8,6 @@ export default function NavBar() {
   return (
     <div className='flexboxContainerLine'>
       <div className='clickNav' onClick={() => navigate('/')}>Home</div>
-      <br /> <br />
     </div>
   )
 }

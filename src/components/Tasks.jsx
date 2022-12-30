@@ -74,17 +74,12 @@ export default function Tasks(props) {
     <div>
 
     <h2>Hello {props.currentUser}!</h2>
-    <br />
     <div className='flexboxContainerLine'>
       <div className='flexboxContainerButtons'>
         <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
-        <br />
         <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
-        <br />
         <div className='optionDiv' onClick={newTask}>New task</div>
-        <br />
         <div className='optionDiv' onClick={tasksHistory}>Tasks history</div>
-        <br />
         <div className='optionDiv' onClick={logout}>Exit</div>
       </div>
 
