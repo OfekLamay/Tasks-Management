@@ -25,17 +25,17 @@ h2 {
 }
 
 .taskName {
-  width: 35%;
+  width: 42%;
   min-width: 100px;
-  max-width: 200px;
+  max-width: 500px;
   border-right: 1px solid black;
   border-left: 1px solid black;
 }
 
 .taskUserRelated {
-  width: 55%;
+  width: 52%;
   min-width: 120px;
-  max-width: 300px;
+  max-width: 500px;
   border-right: 1px solid black;
   border-left: 1px solid black;
 }
@@ -374,6 +374,22 @@ h2 {
     border: 5px solid black;
     background-color: aliceblue;
     border-radius: 5px;
+  }
+
+  .taskName {
+    width: 40%;
+    min-width: 100px;
+    max-width: 200px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+  }
+
+  .taskUserRelated {
+    width: 50%;
+    min-width: 120px;
+    max-width: 300px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
   }
 
 }
