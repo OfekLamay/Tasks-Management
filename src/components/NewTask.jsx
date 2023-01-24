@@ -17,7 +17,7 @@ export default function NewTask() {
             return;
         }
   
-        fetch('https://tasks-management-server.onrender.com/api/add-task', {
+        fetch('/api/add-task', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ tName: taskName, tDes: description, tUserRelated: userRelated })

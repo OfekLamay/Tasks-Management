@@ -10,7 +10,7 @@ export default function Home(props) {
     const checkLogin = (username, password) => {
       // Request the server to log in
   
-      fetch('https://tasks-management-server.onrender.com/login', {
+      fetch('/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ uName: username, uPass: password })

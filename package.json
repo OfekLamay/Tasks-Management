@@ -1,6 +1,7 @@
 {
   "name": "Tasks-Management",
   "version": "0.1.0",
+  "proxy": "https://tasks-management-server.onrender.com",
   "private": true,
   "homepage": "http://OfekLamay.github.io/Tasks-Management",
   "dependencies": {

@@ -10,7 +10,7 @@ export default function Tasks(props) {
   const [tasks, setTasks] = useState([])
 
   const showAllTasks = () => {
-    fetch('https://tasks-management-server.onrender.com/api/tasks')
+    fetch('/api/tasks')
     .then(response => response.json())
     .then(data => setTasks(data))
   }
@@ -29,7 +29,7 @@ export default function Tasks(props) {
     ,[])
 
   const showUserTasks = () => {
-    fetch('https://tasks-management-server.onrender.com/api/user-tasks', {
+    fetch('/api/user-tasks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username: props.currentUser })
@@ -43,7 +43,7 @@ export default function Tasks(props) {
   }
 
   const tasksHistory = () => {
-    fetch('https://tasks-management-server.onrender.com/api/tasks-history')
+    fetch('/api/tasks-history')
     .then(response => response.json())
     .then(data => {
       if (data.length === 0)
