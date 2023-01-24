@@ -10,7 +10,7 @@ export default function TaskInfo(props) {
 
   const endTask = () => {
       
-    fetch('/api/end-task', {
+    fetch('https://tasks-management-server.onrender.com/api/end-task', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ tID: props.task.id })

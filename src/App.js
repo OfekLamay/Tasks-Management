@@ -7,7 +7,7 @@ import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Tasks from './components/Tasks';
 import NewTask from './components/NewTask';
-
+//"proxy": "https://tasks-management-server.onrender.com"
 
 function App() {
 
