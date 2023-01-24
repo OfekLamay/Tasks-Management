@@ -10,7 +10,7 @@ export default function Home(props) {
     const checkLogin = (username, password) => {
       // Request the server to log in
   
-      fetch('/login', {
+      fetch('/Tasks-Management/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ uName: username, uPass: password })
