@@ -12,7 +12,7 @@ export default function Home(props) {
   
       fetch('/Tasks-Management/login', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json' , 'Accept': 'application/json'},
           body: JSON.stringify({ uName: username, uPass: password })
       })
       .then(response => response.json())
