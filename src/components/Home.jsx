@@ -7,12 +7,12 @@ export default function Home(props) {
     const navigate = useNavigate()
     // const [first, setfirst] = useState(second)
 
-    const checkLogin = (username, password) => {
+    const checkLogin = async (username, password) => {
       // Request the server to log in
   
-      fetch('/Tasks-Management/login', {
+      await fetch('/api/login', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' , 'Accept': 'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ uName: username, uPass: password })
       })
       .then(response => response.json())
