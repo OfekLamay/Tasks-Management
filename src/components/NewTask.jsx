@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import SeletOptions from './SeletOptions';
 
-export default function NewTask() {
+export default function NewTask(props) {
 
     const navigate = useNavigate()
 
@@ -11,7 +11,6 @@ export default function NewTask() {
         let taskName = document.getElementById('name').value;
         let description = document.getElementById('description').value;
         let userRelated = document.getElementById('selectUser').value;
-        console.log(userRelated)
 
         if (taskName === "" || userRelated === "")
         {
@@ -51,7 +50,7 @@ export default function NewTask() {
             <br/> <br/>
             <textarea id='description' type="text" className='descriptionInputLabel' placeholder='Task description'/>
             <br/> <br/>
-            <SeletOptions />
+            <SeletOptions user={props.currentUser} />
             <br/> <br/>
             <button onClick={createTask} className='clickbtn'>Create</button>
         </div>

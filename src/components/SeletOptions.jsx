@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from 'react'
 
-export default function SeletOptions() {
+export default function SeletOptions(props) {
 
     const [usersToRelateTo, setUsersToRelateTo] = useState([])
 
     useEffect(()=>{
-        fetch('/api/users-only')
+        fetch('/api/team-users-only', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: props.user })
+        })
         .then(response => response.json())
         .then(data => setUsersToRelateTo(data))
     }, [])

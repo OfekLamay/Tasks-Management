@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path={'/'} element={<Home updateUser={setUser} />} />
         <Route path={'/tasks'} element={<Tasks currentUser = {user}/>} />
-        <Route path={'/newTask'} element={<NewTask />} />
+        <Route path={'/newTask'} element={<NewTask currentUser = {user}/>} />
       </Routes>
     </Router>
     </div>

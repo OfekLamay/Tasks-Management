@@ -9,8 +9,18 @@ export default function Tasks(props) {
 
   const [tasks, setTasks] = useState([])
 
-  const showAllTasks = () => {
-    fetch('/api/tasks')
+  // const showAllTasks = () => {
+  //   fetch('/api/tasks')
+  //   .then(response => response.json())
+  //   .then(data => setTasks(data))
+  // }
+
+  const newShowAllTasks = () => {
+    fetch('/api/new-tasks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: props.currentUser })
+    })
     .then(response => response.json())
     .then(data => setTasks(data))
   }
@@ -25,10 +35,12 @@ export default function Tasks(props) {
 
   useEffect(()=>{
     checkLogIn();
-    showAllTasks();}
+    // showAllTasks()
+    newShowAllTasks();}
     ,[])
 
   const showUserTasks = () => {
+
     fetch('/api/user-tasks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -42,8 +54,24 @@ export default function Tasks(props) {
     navigate('/newTask');
   }
 
-  const tasksHistory = () => {
-    fetch('/api/tasks-history')
+  // const tasksHistory = () => {
+  //   fetch('/api/tasks-history')
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     if (data.length === 0)
+  //       alert("No History")
+  //     else
+  //       setTasks(data)
+  //   })
+  // }
+  
+  const newTasksHistory = () => {
+
+    fetch('/api/new-tasks-history', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: props.currentUser })
+    })
     .then(response => response.json())
     .then(data => {
       if (data.length === 0)
@@ -51,6 +79,7 @@ export default function Tasks(props) {
       else
         setTasks(data)
     })
+
   }
 
   const removeTaskFromState = (id) => {
@@ -77,9 +106,9 @@ export default function Tasks(props) {
     <div className='flexboxContainerLine'>
       <div className='flexboxContainerButtons'>
         <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
-        <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
+        <div className='optionDiv' onClick={newShowAllTasks}>Show all tasks</div>
         <div className='optionDiv' onClick={newTask}>New task</div>
-        <div className='optionDiv' onClick={tasksHistory}>Tasks history</div>
+        <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
         <div className='optionDiv' onClick={logout}>Exit</div>
       </div>
 
