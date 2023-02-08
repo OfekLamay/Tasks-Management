@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-export default function SeletOptions(props) {
-
+const SelectOptions = (props) => {
     const [usersToRelateTo, setUsersToRelateTo] = useState([])
 
     useEffect(()=>{
@@ -12,13 +11,13 @@ export default function SeletOptions(props) {
         })
         .then(response => response.json())
         .then(data => setUsersToRelateTo(data))
-    }, [])
+    }, [props.user])
 
 
   return (
     <div>
         <select className='selectOptions' name="select" id="selectUser">
-            <option key="defaultChooseOption" value="Choose user" selected>Choose user</option>
+            <option key="defaultChooseOption" value="Choose user" defaultValue={"Choose user"}>Choose user</option>
             {usersToRelateTo.map((user) => {
                 return <option key={user.username} value={user.username}>{user.username}</option>
             })}
@@ -26,3 +25,5 @@ export default function SeletOptions(props) {
     </div>
   )
 }
+
+export default SelectOptions

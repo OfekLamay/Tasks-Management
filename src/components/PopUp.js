@@ -1,8 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 
-export default function PopUp(props) {
-
+const PopUp = (props) => {
     // close = {f()}
     // isTimed = {bool}
     // info ={
@@ -45,5 +44,6 @@ export default function PopUp(props) {
         </div>
     </div>
   )
-  
 }
+
+export default PopUp

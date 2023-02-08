@@ -1,9 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import SeletOptions from './SeletOptions';
+import SelectOptions from './SelectOptions';
 
-export default function NewTask(props) {
-
+const NewTask = (props) => {
     const navigate = useNavigate()
 
     const createTask = ()=> {
@@ -50,10 +49,12 @@ export default function NewTask(props) {
             <br/> <br/>
             <textarea id='description' type="text" className='descriptionInputLabel' placeholder='Task description'/>
             <br/> <br/>
-            <SeletOptions user={props.currentUser} />
+            <SelectOptions user={props.currentUser} />
             <br/> <br/>
             <button onClick={createTask} className='clickbtn'>Create</button>
         </div>
     </div>
   )
 }
+
+export default NewTask

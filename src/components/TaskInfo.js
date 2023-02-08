@@ -1,12 +1,13 @@
 import React from 'react'
 
-export default function TaskInfo(props) {
+const TaskInfo = (props) => {
 
   // id: Number
   // name: String,
   // userRelated: String,
   // description: String,
   // isDone: Boolean
+  // teamNumber: Number
 
   const endTask = () => {
       
@@ -50,3 +51,5 @@ export default function TaskInfo(props) {
     </div>
   )
 }
+
+export default TaskInfo

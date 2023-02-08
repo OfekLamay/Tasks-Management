@@ -1,5 +1,5 @@
 import './App.css';
-import {HashRouter as Router, Routes , Route} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 
 // components
@@ -16,15 +16,12 @@ function App() {
   return (
     <div className="App">
       <h1>Tasks Management</h1>
-
-    <Router>
       <NavBar />
       <Routes>
-        <Route path={'/'} element={<Home updateUser={setUser} />} />
+        <Route path='/' element={<Home updateUser={setUser}/>} />
         <Route path={'/tasks'} element={<Tasks currentUser = {user}/>} />
         <Route path={'/newTask'} element={<NewTask currentUser = {user}/>} />
       </Routes>
-    </Router>
     </div>
   );
 }
