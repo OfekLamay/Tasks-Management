@@ -8,6 +8,7 @@ export default function Tasks(props) {
   const navigate = useNavigate()
 
   const [tasks, setTasks] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   // const showAllTasks = () => {
   //   fetch('/api/tasks')
@@ -15,14 +16,16 @@ export default function Tasks(props) {
   //   .then(data => setTasks(data))
   // }
 
-  const newShowAllTasks = () => {
-    fetch('/api/new-tasks', {
+  const newShowAllTasks = async () => {
+    await fetch('/api/new-tasks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username: props.currentUser })
     })
     .then(response => response.json())
     .then(data => setTasks(data))
+    setIsLoading(false)
+
   }
 
   const checkLogIn = () => {
@@ -116,7 +119,8 @@ export default function Tasks(props) {
         {tasks.map((task) => {
           return <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData = {task} /> })}
 
-        {tasks.length === 0 ? <div id='noTasksLeft'>ALL TASKS ARE DONE!</div> :null}
+        {isLoading ? <div className='tasksMessage'>Loading tasks...</div> : null}
+        {tasks.length === 0 && !isLoading ? <div id='noTasksLeft' className='tasksMessage'>ALL TASKS ARE DONE!</div> :null}
       </div>
     </div>
     </div>

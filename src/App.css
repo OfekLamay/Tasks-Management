@@ -19,7 +19,7 @@ h2 {
   padding: 0px;
 }
 
-#noTasksLeft {
+.tasksMessage {
   color: darkgreen;
   font-size: 40px;
 }
