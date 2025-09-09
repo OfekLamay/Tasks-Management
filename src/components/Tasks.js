@@ -8,6 +8,8 @@ const Tasks = (props) => {
 
     const [tasks, setTasks] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+
+    // Server interaction functions ----------------------------------------------------
   
     // const showAllTasks = () => {
     //   fetch('/api/tasks')
@@ -34,13 +36,7 @@ const Tasks = (props) => {
         navigate('/')
       }
     }
-  
-    useEffect(()=>{
-      checkLogIn();
-      // showAllTasks()
-      newShowAllTasks();}
-      ,[])
-  
+
     const showUserTasks = () => {
   
       fetch('/api/user-tasks', {
@@ -51,11 +47,7 @@ const Tasks = (props) => {
       .then(response => response.json())
       .then(data => setTasks(data))
     }
-  
-    const newTask = () => {
-      navigate('/newTask');
-    }
-  
+
     // const tasksHistory = () => {
     //   fetch('/api/tasks-history')
     //   .then(response => response.json())
@@ -83,21 +75,30 @@ const Tasks = (props) => {
       })
   
     }
+
+    // Frontend interactions functions --------------------------------------------------
   
+    useEffect(()=>{
+      checkLogIn();
+      // showAllTasks()
+      newShowAllTasks();
+    },[])
+  
+    const newTask = () => {
+      navigate('/newTask');
+    }
+
+    // This is a better way to remove the task after ending it - try it
     const removeTaskFromState = (id) => {
-      let newTasks = []
-  
-      for (let i = 0; i < tasks.length; i++)
-      {
-        if (tasks[i].id !== id)
-          newTasks = [...newTasks, tasks[i]]
-      }
-  
-      setTasks(newTasks);
+      // This is a VERY stupid way to remove the task after ending it. The only thing
+      // needed is to remove the task from the tasks array, no need to iterate over 
+      // all the tasks
+      setTasks(tasks => tasks.filter(task => task.id !== id));
     }
   
     const logout = () => {
       alert("Logging out...")
+      // Not doing anything to the user?
       navigate('/');
     }
   
@@ -116,8 +117,7 @@ const Tasks = (props) => {
   
         <div className='flexboxContainerTasks'>
           {tasks.map((task) => {
-            return <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData = {task} /> })}
-  
+            return <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData = {task} /> })}  
           {isLoading ? <div className='tasksMessage'>Loading tasks...</div> : null}
           {tasks.length === 0 && !isLoading ? <div id='noTasksLeft' className='tasksMessage'>ALL TASKS ARE DONE!</div> :null}
         </div>
