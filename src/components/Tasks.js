@@ -10,14 +10,8 @@ const Tasks = (props) => {
     const [isLoading, setIsLoading] = useState(true)
 
     // Server interaction functions ----------------------------------------------------
-  
-    // const showAllTasks = () => {
-    //   fetch('/api/tasks')
-    //   .then(response => response.json())
-    //   .then(data => setTasks(data))
-    // }
-  
-    const newShowAllTasks = async () => {
+    
+    const showAllTasks = async () => {
       await fetch('/api/new-tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -37,9 +31,8 @@ const Tasks = (props) => {
       }
     }
 
-    const showUserTasks = () => {
-  
-      fetch('/api/user-tasks', {
+    const showUserTasks = async () => {
+      await fetch('/api/user-tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: props.currentUser })
@@ -48,20 +41,9 @@ const Tasks = (props) => {
       .then(data => setTasks(data))
     }
 
-    // const tasksHistory = () => {
-    //   fetch('/api/tasks-history')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     if (data.length === 0)
-    //       alert("No History")
-    //     else
-    //       setTasks(data)
-    //   })
-    // }
-    
-    const newTasksHistory = () => {
-  
-      fetch('/api/new-tasks-history', {
+    const newTasksHistory = async () => {
+
+      await fetch('/api/new-tasks-history', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: props.currentUser })
@@ -80,19 +62,14 @@ const Tasks = (props) => {
   
     useEffect(()=>{
       checkLogIn();
-      // showAllTasks()
-      newShowAllTasks();
+      showAllTasks()
     },[])
   
     const newTask = () => {
       navigate('/newTask');
     }
 
-    // This is a better way to remove the task after ending it - try it
     const removeTaskFromState = (id) => {
-      // This is a VERY stupid way to remove the task after ending it. The only thing
-      // needed is to remove the task from the tasks array, no need to iterate over 
-      // all the tasks
       setTasks(tasks => tasks.filter(task => task.id !== id));
     }
   
@@ -109,7 +86,7 @@ const Tasks = (props) => {
       <div className='flexboxContainerLine'>
         <div className='flexboxContainerButtons'>
           <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
-          <div className='optionDiv' onClick={newShowAllTasks}>Show all tasks</div>
+          <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
           <div className='optionDiv' onClick={newTask}>New task</div>
           <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
           <div className='optionDiv' onClick={logout}>Exit</div>
@@ -117,7 +94,7 @@ const Tasks = (props) => {
   
         <div className='flexboxContainerTasks'>
           {tasks.map((task) => {
-            return <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData = {task} /> })}  
+            return <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData = {task} currentUser = {props.currentUser} /> })}  
           {isLoading ? <div className='tasksMessage'>Loading tasks...</div> : null}
           {tasks.length === 0 && !isLoading ? <div id='noTasksLeft' className='tasksMessage'>ALL TASKS ARE DONE!</div> :null}
         </div>

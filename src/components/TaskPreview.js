@@ -29,8 +29,7 @@ const TaskPreview = (props) => {
         </div>
   
         { (showInfo && props.taskData.isDone) ? <PopUp close={closeInfoFunc} isTimed={true} info={popUpContent} /> : 
-        showInfo ? <TaskInfo task={props.taskData} show={showInfo} updateTasks={props.updateTasks} close={closeInfoFunc} /> : null}
-        
+        showInfo ? <TaskInfo task={props.taskData} show={showInfo} updateTasks={props.updateTasks} close={closeInfoFunc} currentUser={props.currentUser}/> : null}
       </div>
       )
 }

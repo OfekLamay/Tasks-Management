@@ -1,7 +1,9 @@
 import React from 'react'
 
 const TaskInfo = (props) => {
+  if (!props.show) return null;
 
+  // Props' task has:
   // id: Number
   // name: String,
   // userRelated: String,
@@ -9,25 +11,21 @@ const TaskInfo = (props) => {
   // isDone: Boolean
   // teamNumber: Number
 
-  const endTask = () => {
-      
-    fetch('/api/end-task', {
+  const endTask = async () => {
+    if (window.confirm("Are you sure you want to end this task?")) {
+      await fetch('/api/end-task', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tID: props.task.id })
+        body: JSON.stringify({ tID: props.task.id, username: props.currentUser })
       })
       .then(response => response.json())
       .then(res => {
-        if (res.isDone)
-            alert(res.message);
-        else
-            alert(res.message);
-        }
-      )
-    
-    closePopUp()
-    props.updateTasks(props.task.id);
-  }
+        alert(res.message);
+        props.updateTasks(props.task.id);
+        closePopUp();
+      });
+    }
+  };
 
   const closePopUp = async () => {
     await props.close()
@@ -37,19 +35,26 @@ const TaskInfo = (props) => {
   {
     return null;
   } 
+
   return (
-    <div className='overlay'>
-      <div className='taskInfo'>
-        <div className='taskCloseLabel' onClick={closePopUp}>X</div>
-        <br />
-        <div className='taskNameLabel'>{props.task.name}</div>
-        <br /> 
-        <div className='taskDataLabel'>{props.task.description}</div>
-        <br /> 
-        <button className='clickbtn' onClick={endTask}>End task</button>
+    <div className="modal-overlay">
+      <div className="modal-card">
+        <button className="modal-close" onClick={props.close} title="Close">&times;</button>
+        <h2 className="modal-title">{props.task.name}</h2>
+        <div className="modal-section">
+          <strong><u>Description</u>:</strong>
+          <div>{props.task.description}</div>
+        </div>
+        <div className="modal-section">
+          <strong>Assigned to:</strong> {props.task.userRelated}
+        </div>
+        <div className="modal-section">
+          <strong>Team:</strong> {props.task.teamNumber}
+        </div>
+        <button className="modal-action" onClick={endTask}>End Task</button>
       </div>
     </div>
-  )
+  );
 }
 
 export default TaskInfo
