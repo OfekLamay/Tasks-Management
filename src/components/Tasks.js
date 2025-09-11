@@ -1,36 +1,38 @@
 import React from 'react'
 import TaskPreview from './TaskPreview'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'; 
+import { useSelector, useDispatch } from 'react-redux'; 
+import { setTasks, removeTask } from '../redux/tasksSlice';
 
 const Tasks = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate()
     const currentUser = useSelector(state => state.user.username);
+    const tasks = useSelector(state => state.tasks);
 
-    const [tasks, setTasks] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     // Server interaction functions ----------------------------------------------------
     
-    const showAllTasks = async () => {
-      await fetch('/api/new-tasks', {
+    const showAllTasks = useCallback(async () => {
+      const response = await fetch('/api/new-tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: currentUser })
-      })
-      .then(response => response.json())
-      .then(data => setTasks(data))
-      setIsLoading(false)
-    }
+      });
+      const data = await response.json();
+      dispatch(setTasks(data));
+      setIsLoading(false);
+    }, [currentUser, dispatch]);
   
-    const checkLogIn = () => {
+    const checkLogIn = useCallback(() => {
       if (currentUser === "NotLoggedIn")
       {
         window.alert("Log in first!")
         navigate('/')
       }
-    }
+    }, [currentUser, navigate]);
 
     const showUserTasks = async () => {
       await fetch('/api/user-tasks', {
@@ -39,7 +41,7 @@ const Tasks = () => {
         body: JSON.stringify({ username: currentUser })
       })
       .then(response => response.json())
-      .then(data => setTasks(data))
+      .then(data => dispatch(setTasks(data)))
     }
 
     const newTasksHistory = async () => {
@@ -53,7 +55,7 @@ const Tasks = () => {
         if (data.length === 0)
           alert("No History")
         else
-          setTasks(data)
+          dispatch(setTasks(data))
       })
     }
 
@@ -62,14 +64,14 @@ const Tasks = () => {
     useEffect(()=>{
       checkLogIn();
       showAllTasks()
-    },[])
+    }, [checkLogIn, showAllTasks])
   
     const newTask = () => {
       navigate('/newTask');
     }
 
     const removeTaskFromState = (id) => {
-      setTasks(tasks => tasks.filter(task => task.id !== id));
+      dispatch(removeTask(id));
     }
   
     const logout = () => {
