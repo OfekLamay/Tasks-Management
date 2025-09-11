@@ -2,9 +2,11 @@ import React from 'react'
 import TaskPreview from './TaskPreview'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'; 
 
-const Tasks = (props) => {
+const Tasks = () => {
     const navigate = useNavigate()
+    const currentUser = useSelector(state => state.user.username);
 
     const [tasks, setTasks] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -15,16 +17,15 @@ const Tasks = (props) => {
       await fetch('/api/new-tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: props.currentUser })
+        body: JSON.stringify({ username: currentUser })
       })
       .then(response => response.json())
       .then(data => setTasks(data))
       setIsLoading(false)
-  
     }
   
     const checkLogIn = () => {
-      if (props.currentUser === "NotLoggedIn")
+      if (currentUser === "NotLoggedIn")
       {
         window.alert("Log in first!")
         navigate('/')
@@ -35,18 +36,17 @@ const Tasks = (props) => {
       await fetch('/api/user-tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: props.currentUser })
+        body: JSON.stringify({ username: currentUser })
       })
       .then(response => response.json())
       .then(data => setTasks(data))
     }
 
     const newTasksHistory = async () => {
-
       await fetch('/api/new-tasks-history', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: props.currentUser })
+        body: JSON.stringify({ username: currentUser })
       })
       .then(response => response.json())
       .then(data => {
@@ -55,7 +55,6 @@ const Tasks = (props) => {
         else
           setTasks(data)
       })
-  
     }
 
     // Frontend interactions functions --------------------------------------------------
@@ -75,30 +74,28 @@ const Tasks = (props) => {
   
     const logout = () => {
       alert("Logging out...")
-      // Not doing anything to the user?
       navigate('/');
     }
   
     return (
       <div>
-  
-      <h2>Hello {props.currentUser}!</h2>
-      <div className='flexboxContainerLine'>
-        <div className='flexboxContainerButtons'>
-          <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
-          <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
-          <div className='optionDiv' onClick={newTask}>New task</div>
-          <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
-          <div className='optionDiv' onClick={logout}>Exit</div>
+        <h2>Hello {currentUser}!</h2>
+        <div className='flexboxContainerLine'>
+          <div className='flexboxContainerButtons'>
+            <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
+            <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
+            <div className='optionDiv' onClick={newTask}>New task</div>
+            <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
+            <div className='optionDiv' onClick={logout}>Exit</div>
+          </div>
+          <div className='flexboxContainerTasks'>
+            {tasks.map((task) => {
+              return <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData={task} currentUser={currentUser} />
+            })}  
+            {isLoading ? <div className='tasksMessage'>Loading tasks...</div> : null}
+            {tasks.length === 0 && !isLoading ? <div id='noTasksLeft' className='tasksMessage'>ALL TASKS ARE DONE!</div> :null}
+          </div>
         </div>
-  
-        <div className='flexboxContainerTasks'>
-          {tasks.map((task) => {
-            return <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData = {task} currentUser = {props.currentUser} /> })}  
-          {isLoading ? <div className='tasksMessage'>Loading tasks...</div> : null}
-          {tasks.length === 0 && !isLoading ? <div id='noTasksLeft' className='tasksMessage'>ALL TASKS ARE DONE!</div> :null}
-        </div>
-      </div>
       </div>
     )
 }

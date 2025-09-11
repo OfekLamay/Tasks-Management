@@ -1,50 +1,52 @@
 import React from 'react'
-
-// import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
+// import { useState } from 'react';
 
-const Home = (props) => {
 
-    const navigate = useNavigate()
-    // const [first, setfirst] = useState(second)
+const Home = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  // const [first, setfirst] = useState(second)
 
-    const checkLogin = async (username, password) => {
-      // Request the server to log in
-  
-      await fetch('/api/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ uName: username, uPass: password })
-      })
-      .then(response => response.json())
-      .then(res => {
-        if(res.isLogin) {
-          props.updateUser(username)
-          alert(res.message);
-          navigate('/tasks');
-        } else {
-          alert(res.message)
-        }
-      })
-  
-    }
+  const checkLogin = async (username, password) => {
+    // Request the server to log in
 
-    const logIn = () => {
-      let uName = document.getElementById('username').value;
-      let uPassword = document.getElementById('password').value;
+    await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uName: username, uPass: password })
+    })
+    .then(response => response.json())
+    .then(res => {
+      if(res.isLogin) {
+        dispatch(setUser(username));
+        alert(res.message);
+        navigate('/tasks');
+      } else {
+        alert(res.message)
+      }
+    })
 
-      checkLogin(uName, uPassword)
-    }
+  }
 
-    // const addUser = () => {
-    //   let uName = document.getElementById('username').value;
-    //   let uPassword = document.getElementById('password').value;
+  const logIn = () => {
+    let uName = document.getElementById('username').value;
+    let uPassword = document.getElementById('password').value;
 
-    //   if (uName != "" && uPassword != "")
-    //     props.addUser(uName, uPassword)
-    //   else
-    //     alert("Insert a proper username and password")
-    // }
+    checkLogin(uName, uPassword)
+  }
+
+  // const addUser = () => {
+  //   let uName = document.getElementById('username').value;
+  //   let uPassword = document.getElementById('password').value;
+
+  //   if (uName != "" && uPassword != "")
+  //     props.addUser(uName, uPassword)
+  //   else
+  //     alert("Insert a proper username and password")
+  // }
 
   return (
     <div>

@@ -1,6 +1,8 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
 const TaskInfo = (props) => {
+  const currentUser = useSelector(state => state.user.username);
   if (!props.show) return null;
 
   // Props' task has:
@@ -16,7 +18,7 @@ const TaskInfo = (props) => {
       await fetch('/api/end-task', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tID: props.task.id, username: props.currentUser })
+        body: JSON.stringify({ tID: props.task.id, username: currentUser })
       })
       .then(response => response.json())
       .then(res => {
