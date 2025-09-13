@@ -46,20 +46,16 @@ const NewTask = () => {
     }
 
     return (
-        <div>
-            <h2>Add New Task</h2>
-            <br />
-            <div className='flexboxContainerNewTask'>
-                <br/>
-                <button onClick={goBack} className='clickbtn'>Back</button>
-                <br/> <br/>
-                <input id='name' type="text" className='inputLabel' placeholder='Task name' />
-                <br/> <br/>
-                <textarea id='description' type="text" className='descriptionInputLabel' placeholder='Task description'/>
-                <br/> <br/>
-                <SelectOptions users={users} />
-                <br/> <br/>
-                <button onClick={createTask} className='clickbtn'>Create</button>
+        <div className="newtask-bg">
+            <div className="newtask-card">
+                <h2 style={{textAlign: 'center'}}>Add New Task</h2>
+                <div className='flexboxContainerNewTask'>
+                    <button onClick={goBack} className='clickbtn'>Back</button>
+                    <input id='name' type="text" className='inputLabel' placeholder='Task name' />
+                    <textarea id='description' type="text" className='descriptionInputLabel' placeholder='Task description'/>
+                    <SelectOptions users={users} />
+                    <button onClick={createTask} className='clickbtn'>Create</button>
+                </div>
             </div>
         </div>
     )

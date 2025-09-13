@@ -80,22 +80,24 @@ const Tasks = () => {
     }
   
     return (
-      <div>
-        <h2>Hello {currentUser}!</h2>
-        <div className='flexboxContainerLine'>
-          <div className='flexboxContainerButtons'>
-            <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
-            <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
-            <div className='optionDiv' onClick={newTask}>New task</div>
-            <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
-            <div className='optionDiv' onClick={logout}>Exit</div>
-          </div>
-          <div className='flexboxContainerTasks'>
-            {tasks.map((task) => {
-              return <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData={task} currentUser={currentUser} />
-            })}  
-            {isLoading ? <div className='tasksMessage'>Loading tasks...</div> : null}
-            {tasks.length === 0 && !isLoading ? <div id='noTasksLeft' className='tasksMessage'>ALL TASKS ARE DONE!</div> :null}
+      <div className="tasks-bg">
+        <div className="tasks-card">
+          <h2 style={{textAlign: 'center'}}>Hello {currentUser}!</h2>
+          <div className='flexboxContainerLine'>
+            <div className='flexboxContainerButtons'>
+              <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
+              <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
+              <div className='optionDiv' onClick={newTask}>New task</div>
+              <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
+              <div className='optionDiv' onClick={logout}>Exit</div>
+            </div>
+            <div className='flexboxContainerTasks'>
+              {tasks.map((task) => (
+                <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData={task} />
+              ))}
+              {isLoading ? <div className='tasksMessage'>Loading tasks...</div> : null}
+              {tasks.length === 0 && !isLoading ? <div id='noTasksLeft' className='tasksMessage'>ALL TASKS ARE DONE!</div> :null}
+            </div>
           </div>
         </div>
       </div>

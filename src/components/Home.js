@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  // const [first, setfirst] = useState(second)
+  const navigate = useNavigate();
+
+  // Server interactions functions ----------------------------------------------------
 
   const checkLogin = async (username, password) => {
     // Request the server to log in
@@ -31,10 +32,11 @@ const Home = () => {
 
   }
 
+  // Frontend interactions functions --------------------------------------------------
+
   const logIn = () => {
     let uName = document.getElementById('username').value;
     let uPassword = document.getElementById('password').value;
-
     checkLogin(uName, uPassword)
   }
 
@@ -49,20 +51,17 @@ const Home = () => {
   // }
 
   return (
-    <div>
-        <div className='flexboxContainer'>
-            <br/> <br/>
-            <input id='username' type="text" className='inputLabel' placeholder='User name' />
-            <br/> <br/>
-            <input id='password' type="password" className='inputLabel' placeholder='Password' />
-            <br/> <br/>
-            <button onClick={logIn} className='clickbtn'>Log In</button>
-            {/* <br/> <br/>
-            <button onClick={addUser} className='clickbtn'>Add User</button> */}
+    <div className="home-bg">
+      <div className="home-card">
+        <h2>👋 Welcome to Tasks Management</h2>
+        <div className='home-form'>
+          <input id='username' type="text" className='inputLabel' placeholder='User name' />
+          <input id='password' type="password" className='inputLabel' placeholder='Password' />
+          <button onClick={logIn} className='clickbtn home-btn'>Log In</button>
         </div>
+      </div>
     </div>
   )
 }
-
 
 export default Home
