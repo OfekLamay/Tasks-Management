@@ -4,6 +4,8 @@
 
 body {
   background-color: rgb(127, 246, 255);
+  margin: 0; 
+  padding: 0; 
 }
 
 h1 {
@@ -354,7 +356,7 @@ h2 {
 }
 
 .home-bg {
-  min-height: 97vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
