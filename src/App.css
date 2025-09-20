@@ -69,10 +69,11 @@ h2 {
 }
 
 .flexboxContainerTasks {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 18px;
   margin-top: 16px;
+  width: 100%;
 }
 
 .flexboxContainerButtons {
@@ -96,12 +97,9 @@ h2 {
 .flexboxContainerNewTask {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  width: 50%;
-  max-width: 300px;
-  margin:auto;
-  min-height: 100px;
-  height: 50%;
+  align-items: center;      /* Center children horizontally */
+  gap: 18px;
+  width: 100%;
 }
 
 .flexboxContainerLine {
@@ -121,17 +119,31 @@ h2 {
 .taskPreview {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  font-size: 30px;
-  background-color: rgb(190, 246, 107);
-  color: rgb(0, 0, 0);
-  border: 2px solid white;
+  align-items: center;
+  justify-content: flex-start;
+  background: #b3ff7a;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 16px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-size: 1.15rem;
   cursor: pointer;
-  padding: 3px;
-  width: 100%;
-  margin: auto;
-  margin-bottom: 10px;
+  transition: box-shadow 0.2s;
+}
+
+.taskPreview:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  outline: 2px solid #6bbf3d;
+}
+
+.taskName, .taskUserRelated {
+  margin: 0 24px 0 0;
+  font-weight: bold;
+}
+
+.taskUserRelated {
+  font-weight: normal;
+  color: #333;
 }
 
 .overlay {
@@ -375,11 +387,27 @@ h2 {
 .home-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
   margin-top: 24px;
 }
 
-.home-btn {
+.home-form input,
+.home-form button {
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+}
+
+.home-form input {
+  font-size: 1.1rem;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #168fdb;
+  margin-bottom: 0;
+}
+
+.home-form button {
   font-size: 1.1rem;
   padding: 12px;
   border-radius: 8px;
@@ -388,9 +416,10 @@ h2 {
   border: none;
   cursor: pointer;
   transition: background 0.2s;
+  margin-top: 8px;
 }
 
-.home-btn:hover {
+.home-form button:hover {
   background: #0d6cb2;
 }
 
@@ -433,30 +462,24 @@ h2 {
 .flexboxContainerNewTask {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 18px;
+  width: 100%;
 }
 
 .inputLabel, .descriptionInputLabel, .selectOptions {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #168fdb;
-  font-size: 1rem;
-  margin-bottom: 8px;
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .clickbtn {
-  background: #168fdb;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  border: none;
-  transition: background 0.2s;
-}
-
-.clickbtn:hover {
-  background: #0d6cb2;
+  width: 100%;
+  max-width: 320px;
+  margin: 0;
+  font-size: 1.3rem;
+  padding: 12px;
 }
 
 

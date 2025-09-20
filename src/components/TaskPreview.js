@@ -15,21 +15,17 @@ const TaskPreview = (props) => {
     return (
       <div>
         <div onClick={()=>{setShowInfo(true)}} className='taskPreview'>
-            <div className='taskName'>
-              <u>Task Name:</u>
-              <br/>
-              {props.taskData.name}
-            </div>
-  
-            <div className='taskUserRelated'>
-              <u>User Related To:</u>
-              <br/>
-              {props.taskData.userRelated}
-            </div>
+          <div className='taskName'>
+            <span>Task: </span>
+            {props.taskData.name}
+          </div>
+          <div className='taskUserRelated'>
+            <span>User: </span>
+            {props.taskData.userRelated}
+          </div>
         </div>
-  
         { (showInfo && props.taskData.isDone) ? <PopUp close={closeInfoFunc} isTimed={true} info={popUpContent} /> : 
-        showInfo ? <TaskInfo task={props.taskData} show={showInfo} updateTasks={props.updateTasks} close={closeInfoFunc} /> : null}
+          showInfo ? <TaskInfo task={props.taskData} show={showInfo} updateTasks={props.updateTasks} close={closeInfoFunc} /> : null}
       </div>
       )
 }
