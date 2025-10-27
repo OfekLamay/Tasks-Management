@@ -23,13 +23,12 @@ const Home = () => {
     .then(res => {
       if(res.isLogin) {
         dispatch(setUser(username));
-        alert(res.message);
+        //alert(res.message);
         navigate('/tasks');
       } else {
         alert(res.message)
       }
     })
-
   }
 
   // Frontend interactions functions --------------------------------------------------
@@ -39,16 +38,6 @@ const Home = () => {
     let uPassword = document.getElementById('password').value;
     checkLogin(uName, uPassword)
   }
-
-  // const addUser = () => {
-  //   let uName = document.getElementById('username').value;
-  //   let uPassword = document.getElementById('password').value;
-
-  //   if (uName != "" && uPassword != "")
-  //     props.addUser(uName, uPassword)
-  //   else
-  //     alert("Insert a proper username and password")
-  // }
 
   return (
     <div className="home-bg">
