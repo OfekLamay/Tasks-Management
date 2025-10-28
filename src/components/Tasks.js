@@ -16,7 +16,7 @@ const Tasks = () => {
   // Server interaction functions ----------------------------------------------------
 
   const showAllTasks = useCallback(async () => {
-    const response = await fetch('/api/new-tasks', {
+    const response = await fetch('/api/tasks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username: currentUser })
