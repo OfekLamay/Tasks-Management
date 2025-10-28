@@ -51,7 +51,7 @@ const Tasks = () => {
   }
 
   const newTasksHistory = async () => {
-    await fetch('/api/new-tasks-history', {
+    await fetch('/api/tasks-history', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username: currentUser })
