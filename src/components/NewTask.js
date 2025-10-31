@@ -9,11 +9,15 @@ const NewTask = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        // Fetch users from the server
-        fetch('/api/users-only')
-            .then(response => response.json())
-            .then(data => setUsers(data));
-    }, []);
+        // Fetch only users from the same team as currentUser
+        fetch('/api/team-users-only', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: currentUser })
+        })
+        .then(response => response.json())
+        .then(data => setUsers(data));
+    }, [currentUser]);
 
     const createTask = () => {
         let taskName = document.getElementById('name').value;

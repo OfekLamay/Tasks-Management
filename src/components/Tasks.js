@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { setTasks, removeTask } from '../redux/tasksSlice';
+import { logout as logoutAction } from '../redux/userSlice';  // <-- add
 
 const Tasks = () => {
   const dispatch = useDispatch();
@@ -69,8 +70,10 @@ const Tasks = () => {
 
   const removeTaskFromState = (id) => dispatch(removeTask(id));
 
-  const logout = () => {
-    alert('Logging out...')
+  const handleLogout = () => {                  // <-- renamed
+    dispatch(setTasks([]));                     // clear tasks
+    dispatch(logoutAction());                   // update user state
+    alert('Logging out...');
     navigate('/');
   }
 
@@ -84,7 +87,7 @@ const Tasks = () => {
             <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
             <div className='optionDiv' onClick={newTask}>New task</div>
             <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
-            <div className='optionDiv' onClick={logout}>Exit</div>
+            <div className='optionDiv' onClick={handleLogout}>Exit</div>
           </div>
           <div className='flexboxContainerTasks'>
             {tasks.map((task) => (
