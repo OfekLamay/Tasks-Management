@@ -12,23 +12,19 @@ const Home = () => {
   // Server interactions functions ----------------------------------------------------
 
   const checkLogin = async (username, password) => {
-    // Request the server to log in
-
-    await fetch('/api/login', {
+    const res = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ uName: username, uPass: password })
-    })
-    .then(response => response.json())
-    .then(res => {
-      if(res.isLogin) {
-        dispatch(setUser(username));
-        //alert(res.message);
+    }).then(r => r.json());
+
+    if (res.isLogin) {
+        dispatch(setUser({ username, role: res.role, teamNumber: res.teamNumber })); // <-- set role + team
+        alert(res.message);
         navigate('/tasks');
-      } else {
-        alert(res.message)
-      }
-    })
+    } else {
+        alert(res.message);
+    }
   }
 
   // Frontend interactions functions --------------------------------------------------

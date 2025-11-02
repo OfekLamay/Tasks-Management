@@ -4,13 +4,14 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { setTasks, removeTask } from '../redux/tasksSlice';
-import { logout as logoutAction } from '../redux/userSlice';  // <-- add
+import { logout as logoutAction } from '../redux/userSlice';
 
 const Tasks = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const currentUser = useSelector(state => state.user.username);
   const tasks = useSelector(state => state.tasks);
+  const role = useSelector(state => state.user.role);
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -70,9 +71,9 @@ const Tasks = () => {
 
   const removeTaskFromState = (id) => dispatch(removeTask(id));
 
-  const handleLogout = () => {                  // <-- renamed
-    dispatch(setTasks([]));                     // clear tasks
-    dispatch(logoutAction());                   // update user state
+  const handleLogout = () => {                  
+    dispatch(setTasks([]));
+    dispatch(logoutAction());
     alert('Logging out...');
     navigate('/');
   }
@@ -88,6 +89,9 @@ const Tasks = () => {
             <div className='optionDiv' onClick={newTask}>New task</div>
             <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
             <div className='optionDiv' onClick={handleLogout}>Exit</div>
+            {['manager','admin'].includes(role) && (
+              <div className='optionDiv' onClick={() => navigate('/users')}>Users</div>
+            )}
           </div>
           <div className='flexboxContainerTasks'>
             {tasks.map((task) => (

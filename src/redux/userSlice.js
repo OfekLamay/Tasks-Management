@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   username: 'NotLoggedIn',
+  role: 'guest',
+  teamNumber: null
 };
 
 const userSlice = createSlice({
@@ -9,10 +11,15 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
-      state.username = action.payload;
+      const { username, role, teamNumber } = action.payload;
+      state.username = username;
+      state.role = role || 'user';
+      state.teamNumber = teamNumber ?? null;
     },
     logout(state) {
       state.username = 'NotLoggedIn';
+      state.role = 'guest';
+      state.teamNumber = null;
     },
   },
 });
