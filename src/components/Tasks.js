@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { setTasks, removeTask } from '../redux/tasksSlice';
 import { logout as logoutAction } from '../redux/userSlice';
+import TimedModal from './TimedModal'; // <-- add
 
 const Tasks = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const Tasks = () => {
   const role = useSelector(state => state.user.role);
 
   const [isLoading, setIsLoading] = useState(true)
+  const [noHistoryOpen, setNoHistoryOpen] = useState(false) // <-- add
 
   // Server interaction functions ----------------------------------------------------
 
@@ -60,7 +62,7 @@ const Tasks = () => {
     })
     .then(response => response.json())
     .then(data => {
-      if (data.length === 0) alert('No History')
+      if (data.length === 0) setNoHistoryOpen(true);  // <-- open modal
       else dispatch(setTasks(data))
     })
   }
@@ -102,6 +104,15 @@ const Tasks = () => {
           </div>
         </div>
       </div>
+
+      {/* No history modal */}
+      <TimedModal
+        open={noHistoryOpen}
+        onClose={() => setNoHistoryOpen(false)}
+        title="No History"
+        message="No tasks history found."
+        durationMs={10000}
+      />
     </div>
   )
 }
