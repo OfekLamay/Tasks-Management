@@ -538,14 +538,220 @@ h2 {
   border-radius: 6px;
 }
 
-/* Mobile tweaks for this modal variant */
+/* ---------- Users page layout ---------- */
+.users-bg {
+  min-height: 100vh;
+  background: #eaf6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.users-card {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  min-width: 340px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.users-title {
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+
+.users-toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.flexboxContainerUsers {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.usersMessage {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #168fdb;
+  margin-top: 24px;
+}
+
+/* ---------- User preview cards (list items) ---------- */
+.userPreview-wrapper {
+  width: 100%;
+}
+
+.userPreview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  background: #f4f9ff;
+  border: 1px solid #d6ecff;
+  border-radius: 10px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.05s;
+}
+
+.userPreview:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  border-color: #a6d6ff;
+}
+
+.userPreview:active {
+  transform: translateY(1px);
+}
+
+.userPreview-name,
+.userPreview-role,
+.userPreview-team {
+  font-size: 1.05rem;
+}
+
+.userPreview-label {
+  font-weight: 700;
+  color: #0d6cb2;
+}
+
+/* ---------- User info modal (separate from generic modal styles) ---------- */
+.user-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 108, 178, 0.18); /* bluish tint */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+.user-modal-card {
+  position: relative;
+  background: #ffffff;
+  border-left: 6px solid #168fdb;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  padding: 22px 22px 18px 22px;
+  width: 100%;
+  max-width: 520px;
+  text-align: left;
+}
+
+.user-modal-title {
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #0d6cb2;
+  font-weight: 700;
+}
+
+.user-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: #e00;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.user-modal-close:hover {
+  background: rgba(224,0,0,0.08);
+  color: #a00;
+}
+
+.user-modal-section {
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+.user-modal-section.subtle {
+  color: #555;
+}
+
+.user-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.user-modal-action {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.user-modal-action.ok {
+  background: #168fdb;
+  color: #fff;
+}
+.user-modal-action.ok:hover { background: #0d6cb2; }
+
+.user-modal-action.promote {
+  background: #ffd666;
+  color: #4a3b00;
+}
+.user-modal-action.promote:hover { opacity: 0.9; }
+
+.user-modal-action.remove {
+  background: #ff6b6b;
+  color: #fff;
+}
+.user-modal-action.remove:hover { background: #e25757; }
+
+/* Nav bar */
+.mainNavBar {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  justify-content: center; /* center nav buttons */
+}
+
+.navLink {
+  background: #168fdb;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transition: background .15s;
+}
+.navLink:hover { background:#0d6cb2; }
+
+/* Task action bar (secondary) */
+.tasksActionsBar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 10px 0 20px;
+  justify-content: center; /* center task action buttons */
+}
+
+/* Responsive tweaks */
 @media (max-width: 600px) {
-  .tasks-bg .modal-card {
-    padding: 14px 16px;
-    min-width: 220px;
+  .user-modal-card {
+    padding: 18px 16px;
+    max-width: 90vw;
   }
-  .tasks-bg .modal-card .clickbtn {
-    padding: 8px 12px;
-    font-size: 0.95rem;
+  .user-modal-title {
+    font-size: 1.25rem;
   }
 }

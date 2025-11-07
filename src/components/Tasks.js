@@ -4,18 +4,17 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { setTasks, removeTask } from '../redux/tasksSlice';
-import { logout as logoutAction } from '../redux/userSlice';
-import TimedModal from './TimedModal'; // <-- add
+import TimedModal from './TimedModal';
+import NavBar from './NavBar';
 
 const Tasks = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const currentUser = useSelector(state => state.user.username);
   const tasks = useSelector(state => state.tasks);
-  const role = useSelector(state => state.user.role);
 
   const [isLoading, setIsLoading] = useState(true)
-  const [noHistoryOpen, setNoHistoryOpen] = useState(false) // <-- add
+  const [noHistoryOpen, setNoHistoryOpen] = useState(false)
 
   // Server interaction functions ----------------------------------------------------
 
@@ -69,43 +68,30 @@ const Tasks = () => {
 
   // Frontend interaction functions ----------------------------------------------------
 
-  const newTask = () => navigate('/newTask');
-
   const removeTaskFromState = (id) => dispatch(removeTask(id));
-
-  const handleLogout = () => {                  
-    dispatch(setTasks([]));
-    dispatch(logoutAction());
-    alert('Logging out...');
-    navigate('/');
-  }
 
   return (
     <div className="tasks-bg">
       <div className="tasks-card">
+        <NavBar />
         <h2 style={{textAlign: 'center'}}>Hello {currentUser}!</h2>
-        <div className='flexboxContainerLine'>
-          <div className='flexboxContainerButtons'>
-            <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
+
+        {/* Task action buttons (moved below navbar) */}
+        <div className='tasksActionsBar'>
+          <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
             <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
-            <div className='optionDiv' onClick={newTask}>New task</div>
-            <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
-            <div className='optionDiv' onClick={handleLogout}>Exit</div>
-            {['manager','admin'].includes(role) && (
-              <div className='optionDiv' onClick={() => navigate('/users')}>Users</div>
-            )}
-          </div>
-          <div className='flexboxContainerTasks'>
-            {tasks.map((task) => (
-              <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData={task} />
-            ))}
-            {isLoading ? <div className='tasksMessage'>Loading tasks...</div> : null}
-            {tasks.length === 0 && !isLoading ? <div id='noTasksLeft' className='tasksMessage'>ALL TASKS ARE DONE!</div> : null}
-          </div>
+          <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
+        </div>
+
+        <div className='flexboxContainerTasks'>
+          {tasks.map((task) => (
+            <TaskPreview key={`task-${task.id}`} updateTasks={removeTaskFromState} taskData={task} />
+          ))}
+          {isLoading ? <div className='tasksMessage'>Loading tasks...</div> : null}
+          {tasks.length === 0 && !isLoading ? <div id='noTasksLeft' className='tasksMessage'>ALL TASKS ARE DONE!</div> : null}
         </div>
       </div>
 
-      {/* No history modal */}
       <TimedModal
         open={noHistoryOpen}
         onClose={() => setNoHistoryOpen(false)}

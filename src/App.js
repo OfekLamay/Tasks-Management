@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Tasks from './components/Tasks';
 import NewTask from './components/NewTask';
 import NotFound from './components/NotFound';
+import Users from './components/Users';
 function App() {
   return (
     <div className="App">
@@ -16,7 +17,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/tasks' element={<Tasks />} />
         <Route path='/newTask' element={<NewTask />} />
-        {/* Catch-all for unknown routes */}
+        <Route path='/users' element={<Users />} /> 
+        {/* All other undefined routes */}
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
