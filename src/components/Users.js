@@ -8,6 +8,7 @@ const Users = () => {
   const navigate = useNavigate();
   const currentUser = useSelector(state => state.user.username);
   const role = useSelector(state => state.user.role);
+  const teamNumber = useSelector(state => state.user.teamNumber);
 
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,8 +49,19 @@ const Users = () => {
     <div className="users-bg">
       <div className="users-card">
         <NavBar />
-        <h2 className="users-title">Users</h2>
-        <div className="flexboxContainerUsers">
+        <h2 className="users-title">Hello {currentUser}!</h2>
+        <h4 className="users-subtitle">
+          Your team number is {teamNumber ?? '—'} and your role is {role}.
+        </h4>
+
+        {/* Header row for columns */}
+        <div className="usersHeader">
+          <div className="usersHeaderCol">User</div>
+          <div className="usersHeaderCol">Role</div>
+          <div className="usersHeaderCol">Team</div>
+        </div>
+
+        <div className="usersList">
           {users.map(u => (
             <UserPreview key={`user-${u.username}`} userData={u} />
           ))}

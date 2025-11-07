@@ -16,11 +16,9 @@ const TaskPreview = (props) => {
       <div>
         <div onClick={()=>{setShowInfo(true)}} className='taskPreview'>
           <div className='taskName'>
-            <span>Task: </span>
             {props.taskData.name}
           </div>
           <div className='taskUserRelated'>
-            <span>User: </span>
             {props.taskData.userRelated}
           </div>
         </div>
