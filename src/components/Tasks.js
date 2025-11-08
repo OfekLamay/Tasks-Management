@@ -53,7 +53,7 @@ const Tasks = () => {
     .then(data => dispatch(setTasks(data)))
   }
 
-  const newTasksHistory = async () => {
+  const showTasksHistory = async () => {
     await fetch('/api/tasks-history', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -80,7 +80,7 @@ const Tasks = () => {
         <div className='tasksActionsBar'>
           <div className='optionDiv' onClick={showUserTasks}>Show my tasks</div>
             <div className='optionDiv' onClick={showAllTasks}>Show all tasks</div>
-          <div className='optionDiv' onClick={newTasksHistory}>Tasks history</div>
+          <div className='optionDiv' onClick={showTasksHistory}>Tasks history</div>
         </div>
 
         <div className='flexboxContainerTasks'>

@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
-// import { useState } from 'react';
 
 
 const Home = () => {
@@ -20,7 +19,6 @@ const Home = () => {
 
     if (res.isLogin) {
         dispatch(setUser({ username, role: res.role, teamNumber: res.teamNumber })); // <-- set role + team
-        alert(res.message);
         navigate('/tasks');
     } else {
         alert(res.message);
