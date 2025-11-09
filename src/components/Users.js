@@ -63,7 +63,11 @@ const Users = () => {
 
         <div className="usersList">
           {users.map(u => (
-            <UserPreview key={`user-${u.username}`} userData={u} />
+            <UserPreview
+              key={`user-${u.username}`}
+              userData={u}
+              onRefresh={loadUsers}   // <-- pass refresh callback
+            />
           ))}
           {isLoading ? <div className='usersMessage'>Loading users...</div> : null}
           {!isLoading && users.length === 0 ? <div className='usersMessage'>No users found</div> : null}

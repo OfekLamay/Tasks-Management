@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UserInfo from './UserInfo';
 
-const UserPreview = ({ userData }) => {
+const UserPreview = ({ userData, onRefresh }) => {
   const [showInfo, setShowInfo] = useState(false);
 
   return (
@@ -18,7 +18,13 @@ const UserPreview = ({ userData }) => {
         <div className="userRowCell userRowTeam">{userData.teamNumber ?? '-'}</div>
       </div>
       {showInfo && (
-        <UserInfo show={showInfo} user={userData} close={() => setShowInfo(false)} />
+        <UserInfo
+          show={showInfo}
+          user={userData}
+          close={() => setShowInfo(false)}
+          onUpdated={onRefresh}    // <-- refresh after role change
+          onRemoved={onRefresh}    // <-- refresh after removal
+        />
       )}
     </>
   );
